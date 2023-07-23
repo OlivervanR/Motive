@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Test.Model"
+             xmlns:local="clr-namespace:Test"
+             xmlns:convert="clr-namespace:Test.Converter"
+             BackgroundColor="#1E1E1E"
+             x:Class="Test.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:EventTypeToColorConverter x:Key="EventTypeToColorConverter"/>
+            <convert:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="scrollView">
+        <StackLayout>
+            <!-- YOUR MOTIVES | Layout #1 -->
+            <CollectionView ItemsSource="{Binding DisplayedItems}">
+
+                <CollectionView.Header>
+                    <Label Text="YOUR MOTIVES" 
+                    FontSize="35"    
+                    CharacterSpacing="4"    
+                    VerticalOptions="Center"
+                    FontFamily="Aventi"
+                    Padding="0,8,0,4"/>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Event">
+                        <Grid ColumnDefinitions="auto, 160, 20"
+                            ColumnSpacing="6"
+                            RowDefinitions="auto, auto, *"
+                            Padding="5,10,5,5">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="View_Event"/>
+                            </Grid.GestureRecognizers>
+
+                            <!--Event Image-->
+                            <Border StrokeShape="RoundRectangle 10"
+                                Grid.RowSpan="4"
+                                StrokeThickness="0">
+                                <Image Source="{Binding Image}"
+                                HeightRequest="125"
+                                WidthRequest="125"
+                                Aspect="AspectFill" 
+                                />
+                            </Border>
+
+                            <!--Friends Going-->
+                            <Border StrokeShape="RoundRectangle 20"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                StrokeThickness="2"
+                                Stroke="black"
+                                Padding="0,0,8,0"
+                                BackgroundColor="White">
+                                <HorizontalStackLayout>
+                                    <Image Source="profile.png"
+                                        Aspect="AspectFit"
+                                        WidthRequest="25"
+                                        HeightRequest="25"/>
+                                    <Label Text="{Binding Friends}"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        VerticalOptions="Center"
+                                        TextColor="Black"
+                                        Padding="5,0,0,0"/>
+                                </HorizontalStackLayout>
+                            </Border>
+
+                            <!--Event Name-->
+                            <Label Text="{Binding Name}"
+                                FontSize="20"
+                                FontFamily="Akira"
+                                CharacterSpacing="0"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Padding="0,8"/>
+
+                            <!--Event Age Restricitons-->
+                            <Label Text="{Binding Nineteen_Plus}"
+                                FontAttributes="Bold"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                FontFamily="Garet"
+                                FontSize="16"
+                                Opacity="0.7"/>
+
+                            <!--Event Type-->
+                            <HorizontalStackLayout Grid.Column="2" Grid.Row="1"
+                                                Spacing="5">
+                                <Image WidthRequest="20"
+                                    HeightRequest="20"                                 
+                                    Source="{Binding Event_Type, Converter={StaticResource EventTypeToImageConverter}}"
+                                    Opacity="0.7"/>
+
+                                <Label x:Name="EventType"   
+                                    Text="{Binding Event_Type}"
+                                    HorizontalTextAlignment="Start"
+                                    VerticalTextAlignment="Start"                                   
+                                    FontFamily="Garet"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Opacity="0.7"/>
+                            </HorizontalStackLayout>
+
+
+                            <!--Event Date-->
+                            <HorizontalStackLayout Grid.Row="2"
+                                                Grid.Column="1">
+                                <Image Source="calendar.png"
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    VerticalOptions="End"
+                                    Opacity="0.7"/>
+                                <Label Text = "{Binding Date}"
+                                    FontAttributes="Italic"
+                                    FontSize="14"
+                                    VerticalTextAlignment="End"
+                                    TextColor="#3E8EED"/>
+                            </HorizontalStackLayout>
+
+                            <!--People Going-->
+                            <HorizontalStackLayout Grid.Row="3" Grid.Column="2"
+                                                Spacing="8">
+                                <Image Source="peopleunknown.png"
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    VerticalOptions="End"/>
+
+                                <Label Text = "{Binding People}"
+                                    FontAttributes="Italic"
+                                    FontSize="14"
+                                    VerticalTextAlignment="End"
+                                    FontFamily="Garet"
+                                    Opacity="0.7"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="View More"
+                Clicked="View_More"
+                HorizontalOptions="FillAndExpand"
+                TextColor="DarkGray"    
+                FontSize="16"
+                BackgroundColor="#1E1E1E"/>
+
+            <!-- Layout #2 -->
+            <CollectionView ItemsSource="{Binding DisplayedItems}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                    Span="2"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.Header>
+                    <Label Text="FAVOURITES" 
+                        FontSize="35"    
+                        CharacterSpacing="4"    
+                        VerticalOptions="Center"
+                        FontFamily="Aventi"
+                        Padding="0,0,0,8"/>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="75,*"
+                            Padding="3">
+                            
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="View_Event"/>
+                            </Grid.GestureRecognizers>
+                            
+                            <Border StrokeShape="RoundRectangle 10 0 10 0"
+                                StrokeThickness="0">
+                                <Image Source="{Binding Image}"
+                                    HeightRequest="75"
+                                    WidthRequest="75" 
+                                    Aspect="AspectFill"/>
+                            </Border>
+
+                            <Border Grid.Column="1"
+                                    StrokeShape="RoundRectangle 0 10 0 10"
+                                    StrokeThickness="0">
+                                <Label Text="{Binding Name}"
+                                       FontFamily="R-Elegance"
+                                       VerticalTextAlignment="Center"
+                                       BackgroundColor="#242526"
+                                       Padding="5"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button ImageSource="chevronbottom.png"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="30"
+                    BackgroundColor="#1E1E1E"/>
+
+            <!-- Layout #3-->
+            <CarouselView x:Name="carouselView"
+                          ItemsSource="{Binding Events}"
+                          IsScrollAnimated="False"
+                          HeightRequest="650">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Source="{Binding Image}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="650"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

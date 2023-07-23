@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:model="clr-namespace:Test.Model"
+             BackgroundColor="#1E1E1E"
+             x:Class="Test.Discover">
+    
+    <VerticalStackLayout>
+        <SearchBar Placeholder="Search"/>
+        <Image Source="map.jpg"/>
+        <CollectionView x:Name="slidingPanel" ItemsSource="{Binding DisplayedItems}">
+            <CollectionView.Header>
+                <Label Text="YOUR MOTIVES" 
+                        FontSize="35"    
+                        CharacterSpacing="4"    
+                        VerticalOptions="Center"
+                        FontFamily="Aventi"
+                        Padding="0,8,0,4"/>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Event">
+                    <Grid ColumnDefinitions="auto, 180, auto, 50, *"
+                            ColumnSpacing="6"
+                            RowDefinitions="auto, Auto, *"
+                            Padding="5">
+
+                        <Border StrokeShape="RoundRectangle 10"
+                                    Grid.RowSpan="4"
+                                    StrokeThickness="0">
+                            <Image Source="{Binding Image}"
+                                    HeightRequest="125"
+                                    WidthRequest="125"
+                                    Aspect="AspectFill" 
+                                    />
+                        </Border>
+
+                        <Label Text="{Binding Name}"
+                                   FontSize="16"
+                                   FontFamily="Akira"
+                                   CharacterSpacing="0"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="4"
+                                />
+
+                        <Label Text="{Binding Nineteen_Plus}"
+                                FontAttributes="Bold"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                FontFamily="Rossela"
+                                FontSize="14"
+                                />
+
+                        <Ellipse WidthRequest="10"
+                                     HeightRequest="10"
+                                     Grid.Column="2"
+                                     Grid.Row="1"
+                                     Fill="{Binding Event_Type, Converter={StaticResource EventTypeToColorConverter}}"/>
+
+                        <Label x:Name="EventType"
+                                Text="{Binding Event_Type}"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Start"
+                                Grid.Column="3"
+                                Grid.Row="1"
+                                FontFamily="Rossela"
+                                FontAttributes="Bold"
+                                FontSize="14"/>
+
+                        <Label Text="{Binding Description}"
+                                Grid.Column="1"
+                                Grid.Row="2" 
+                                Grid.ColumnSpan="3"
+                                FontSize="14"
+                                FontFamily="Rossela"
+                                FontAttributes="Bold"
+                                Opacity="0.7"
+                                Padding="0,10,0,0"/>
+
+                        <Label Text = "{Binding Date}"
+                                FontAttributes="Italic"
+                                FontSize="14"
+                                VerticalTextAlignment="End"
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource blue}"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
