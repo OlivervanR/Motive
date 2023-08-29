@@ -16,9 +16,11 @@
     
     <ScrollView>
         <VerticalStackLayout>
-            <SearchBar/>
+            <SearchBar Placeholder="Search"
+                       TextChanged="SearchBar_TextChanged"/>
             <!-- YOUR MOTIVES | Layout #1 -->
-            <CollectionView ItemsSource="{Binding Events}">
+            <CollectionView x:Name="eventresults"
+                            ItemsSource="{Binding Events}">
 
                 <CollectionView.GestureRecognizers>
                     <TapGestureRecognizer Tapped="View_Event"/>

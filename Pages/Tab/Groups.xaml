@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Test.Model"
+             xmlns:local="clr-namespace:Test"
+             x:Class="Test.Groups"
+             BackgroundColor="#1E1E1E"
+             Title="Groups">
+    <ScrollView>
+        <VerticalStackLayout>
+            <SearchBar TextChanged="SearchBar_TextChanged"/>
+
+            <CollectionView x:Name="groupresults"
+                            ItemsSource="{Binding Group}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Group" >
+                        <Grid ColumnDefinitions="auto,180,*"
+                              Margin="10,5"
+                              ColumnSpacing="5">
+
+                            <Border StrokeShape="RoundRectangle 40"
+                                    StrokeThickness="0">
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="75"
+                                       WidthRequest="75"
+                                       Aspect="AspectFill"/>
+                            </Border>
+
+                            <Grid RowDefinitions="*,*"
+                                  Grid.Column="1">
+                                <HorizontalStackLayout Grid.ColumnSpan="1">
+                                    <Label Text="{Binding Name}"
+                                       VerticalOptions="End"                                          
+                                       FontFamily="TT Fors"
+                                       FontSize="18"
+                                       HorizontalOptions="StartAndExpand"/>
+                                </HorizontalStackLayout>
+                                <CollectionView ItemsSource="{Binding People}"
+                                                Grid.Row="1">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <HorizontalStackLayout>
+                                                <Label Text="{Binding Name}"
+                                                       Opacity="0.7"/>
+                                                <Label Text=","
+                                                       Opacity="0.7"/>
+                                            </HorizontalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+
+                            <Button Text="Invite"
+                                    TextColor="black"
+                                    FontFamily="Akira"
+                                    FontSize="15"
+                                    HorizontalOptions="End"
+                                    WidthRequest="100"
+                                    HeightRequest="40"
+                                    CornerRadius="15"
+                                    BackgroundColor="#3E8EED"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

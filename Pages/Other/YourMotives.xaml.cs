@@ -27,4 +27,12 @@ public partial class YourMotives : ContentPage
     {
 
     }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            eventresults.ItemsSource = Events;
+        else
+            eventresults.ItemsSource = Events.Where(i => i.Name.ToLower().Contains(e.NewTextValue.ToLower()));
+    }
 }

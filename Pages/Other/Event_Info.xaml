@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <convert:UppercaseConverter x:Key="UppercaseConverter" />
             <convert:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+            <convert:EventTypeToWImageConverter x:Key="EventTypeToWImageConverter"/>
             <convert:WordCountToVisibilityConverter x:Key="WordCount"/>
             <convert:TruncateTextConverter x:Key="Truncate"/>
         </ResourceDictionary>
@@ -18,36 +19,28 @@
     
     <Grid RowDefinitions="*, 50">
         <ScrollView>
-            <VerticalStackLayout Spacing="10">
-                <Grid RowDefinitions="auto">
-                    <Image Source="{Binding Image}"
-                       HeightRequest="200"
-                       Aspect="AspectFill"/>
+            <VerticalStackLayout Spacing="25">
+                <VerticalStackLayout>
+                    <Grid RowDefinitions="auto">
+                        <Image Source="{Binding Image}"
+                               HeightRequest="200"
+                               Aspect="AspectFill"/>
+                    </Grid>
+                </VerticalStackLayout>
 
-                    <Border StrokeShape="RoundRectangle 0 0 20 0"
-                        StrokeThickness="0"
-                        HeightRequest="60"
-                        WidthRequest="60"
-                        VerticalOptions="Start"
-                        HorizontalOptions="End"
-                        Background="black">
-                        <Image Source="{Binding Event_Type, Converter={StaticResource EventTypeToImageConverter}}"
-                               HeightRequest="50"/>
-                    </Border>
-                </Grid>
-
-
-                <Label Text="{Binding Name, Converter={StaticResource UppercaseConverter}}"
+                <VerticalStackLayout>
+                    <Label Text="{Binding Name, Converter={StaticResource UppercaseConverter}}"
                        FontFamily="Aventi"
                        FontSize="40"/>
 
-                <HorizontalStackLayout>
-                    <Label Text="Hosted by "
+                    <HorizontalStackLayout>
+                        <Label Text="Hosted by "
                            FontFamily="Garet"/>
-                    <Label Text="{Binding MainHost}"
+                        <Label Text="{Binding MainHost}"
                            TextColor="#6D85FF"
-                           FontFamily="Garet"/> 
-                </HorizontalStackLayout>
+                           FontFamily="Garet"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
 
                 <VerticalStackLayout>
                     <Label Text="Description"
@@ -68,125 +61,130 @@
                 </VerticalStackLayout>
 
                 <Grid RowDefinitions="auto,auto,auto"
-                  ColumnDefinitions="250,*"
-                  RowSpacing="10">
+                      ColumnDefinitions="250,*"
+                      RowSpacing="10">
                     <HorizontalStackLayout>
-                        <Image Source="calendar.png"
-                           HeightRequest="30"/>
+                        <Image Source="calendarwhite.png"
+                               HeightRequest="30"/>
                         <Label Text="{Binding Date}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Column="1">
                         <Image Source="watch.png"
-                           HeightRequest="30"/>
+                               HeightRequest="30"/>
                         <Label Text="{Binding Time}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Row="1">
                         <Image Source="mapdraw.png"
-                           HeightRequest="30"/>
+                               HeightRequest="30"/>
                         <Label Text="{Binding Address}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Column="1"
-                                       Grid.Row="1">
+                                           Grid.Row="1">
                         <Image Source="city.png"
-                           HeightRequest="30"/>
+                               HeightRequest="30"/>
                         <Label Text="{Binding City}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Row="2">
                         <Image Source="peopleunknown.png"
-                           HeightRequest="30"/>
+                               HeightRequest="30"/>
                         <Label Text="{Binding People}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Column="1"
                                    Grid.Row="2">
                         <Image Source="money.png"
-                           HeightRequest="30"/>
+                               HeightRequest="30"/>
                         <Label Text="{Binding Price}"
-                       FontFamily="Garet"
-                       FontSize="16"
-                       VerticalOptions="Center"/>
+                               FontFamily="Garet"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
                     </HorizontalStackLayout>
                 </Grid>
 
-                <Label Text="Friends"
+                <VerticalStackLayout>
+                    <Label Text="Friends"
                        FontFamily="Akira"
                        FontSize="18"/>
 
-                <Border StrokeShape="RoundRectangle 20"
+                    <Border StrokeShape="RoundRectangle 20"
                         BackgroundColor="#3E3E3E"
                         StrokeThickness="0">
-                    <VerticalStackLayout Spacing="5">
-                        <HorizontalStackLayout Spacing="5">
-                            <Border StrokeShape="Ellipse"
+                        <VerticalStackLayout Spacing="5">
+                            <HorizontalStackLayout Spacing="5">
+                                <Border StrokeShape="Ellipse"
                                     StrokeThickness="0">
-                                <Image Source="Draymond"
+                                    <Image Source="Draymond"
                                        HeightRequest="50"
                                        WidthRequest="50"
                                        Aspect="AspectFill"/>
-                            </Border>
-                            <Label Text="Draymond Green"
+                                </Border>
+                                <Label Text="Draymond Green"
                                    VerticalOptions="Center"
                                    FontFamily="Garet"/>
-                        </HorizontalStackLayout>
+                            </HorizontalStackLayout>
 
-                        <Line BackgroundColor="Black"
+                            <Line BackgroundColor="Black"
                               StrokeThickness="3"/>
 
-                        <HorizontalStackLayout Spacing="5">
-                            <Border StrokeShape="Ellipse"
+                            <HorizontalStackLayout Spacing="5">
+                                <Border StrokeShape="Ellipse"
                                     StrokeThickness="0">
-                                <Image Source="otzi"
+                                    <Image Source="otzi"
                                        HeightRequest="50"
                                        WidthRequest="50"
                                        Aspect="AspectFill"/>
-                            </Border>
-                            <Label Text="Otzi"
+                                </Border>
+                                <Label Text="Otzi"
                                    VerticalOptions="Center"
                                    FontFamily="Garet"/>
-                        </HorizontalStackLayout>
+                            </HorizontalStackLayout>
 
-                    </VerticalStackLayout>
+                        </VerticalStackLayout>
 
-                </Border>
+                    </Border>
+                </VerticalStackLayout>
+                
             </VerticalStackLayout>
         </ScrollView>
 
         <Grid Grid.Row="1"
-              ColumnDefinitions="*,*">
+              ColumnDefinitions="*,*"
+              BackgroundColor="Transparent">
             <Button Text="Add to Cart"
                     TextColor="Black"
+                    BackgroundColor="#3E8EED"
                     FontSize="16"
-                    FontFamily="Garet"
-                    ImageSource="cart"
+                    FontFamily="Akira"
                     BorderWidth="2"
-                    CornerRadius="0"/>
+                    CornerRadius="20"/>
 
             <Button Text="Buy Now"
                     TextColor="Black"
+                    BackgroundColor="#3E8EED"
                     FontSize="16"
-                    FontFamily="Garet"
+                    FontFamily="Akira"
                     BorderWidth="2"
-                    CornerRadius="0"
-                    Grid.Column="1"/>
+                    CornerRadius="20"
+                    Grid.Column="2"/>
         </Grid>
     </Grid>
 </ContentPage>

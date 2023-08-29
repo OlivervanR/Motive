@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Test.Model"
+             xmlns:convert="clr-namespace:Test.Converter"
+             x:Class="Test.Pages.Other.Account_Info"
+             BackgroundImageSource="profilebackground2">
+
+    <ContentPage.Resources>
+        <convert:DefaultPic x:Key="DefaultPic"/>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*, 50">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Grid RowDefinitions="auto">
+                    <Image Source="profilebackgroundwhite"
+                           HeightRequest="175"
+                           Aspect="AspectFill"/>
+
+                    <Border StrokeShape="Ellipse"
+                            Margin="15,-50"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            VerticalOptions="End"
+                            HorizontalOptions="Center" >
+                        <Image Source="{Binding Image, Converter={StaticResource DefaultPic}}"
+                               Aspect="AspectFill"/>
+                    </Border>
+                </Grid>
+
+                <VerticalStackLayout Spacing="15"
+                                     Padding="15,0">
+                    <Label Text="{Binding Name}"
+                           Padding="0,60,0,0"
+                           HorizontalOptions="Center" 
+                           FontFamily="Akira"
+                           FontSize="16"/>
+
+                    <Grid ColumnDefinitions="auto, auto"
+                          RowDefinitions="*,*"
+                          ColumnSpacing="10"
+                          HorizontalOptions="Center">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="#"
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+                            <Label Text="Friends"
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="10"
+                                               Grid.Column="1">
+                            <Label Text="#" 
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+                            <Label Text="Invites" 
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="10"
+                                               Grid.Row="1"
+                                               Grid.ColumnSpan="2">
+                            <Label Text="#"
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+                            <Label Text="Motives this week"
+                                   FontSize="16"
+                                   FontFamily="Garet"/>
+
+                        </HorizontalStackLayout>
+
+                    </Grid>
+
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Button Text="Invite"
+                                TextColor="Black"
+                                BackgroundColor="#3E8EED"
+                                FontSize="13"
+                                FontFamily="Akira"
+                                CornerRadius="0"
+                                HeightRequest="40"/>
+
+                        <ImageButton Source="personadd" 
+                                     BackgroundColor="White"
+                                     HeightRequest="50"
+                                     Padding="5"/>
+
+                        <ImageButton Source="messagecircle" 
+                                     BackgroundColor="White"
+                                     HeightRequest="50"
+                                     Padding="5"
+                                     Margin="-5"/>
+
+                    </HorizontalStackLayout>
+                    
+                    <Border StrokeShape="RoundRectangle 10"
+                            StrokeThickness="0"
+                            BackgroundColor="#1E1E1E"
+                            Padding="10">
+                        <Label Text="A bunch of text test aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+                    </Border>
+
+                    <Line HeightRequest="1"
+                          BackgroundColor="White"
+                          Margin="-50,0"
+                          Opacity="0.5"/>
+
+                    <Label Text="GALLERY"
+                           FontFamily="Akira"
+                           FontSize="15"/>
+
+                    <CollectionView ItemsSource="{Binding Gallery}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Account">
+                                <Image Source="{Binding}" 
+                                       HeightRequest="200"
+                                       WidthRequest="100"
+                                       Aspect="AspectFill"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

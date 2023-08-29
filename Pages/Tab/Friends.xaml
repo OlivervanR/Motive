@@ -2,35 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:Test.Model"
+             xmlns:convert="clr-namespace:Test.Converter"
              xmlns:local="clr-namespace:Test"
              x:Class="Test.Friends"
              BackgroundColor="#1E1E1E">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:DefaultPic x:Key="DefaultPic"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Account}">
+            <SearchBar TextChanged="SearchBar_TextChanged"/>
+
+            <CollectionView x:Name="friendresults"
+                            ItemsSource="{Binding Account}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Account" >
-                        <HorizontalStackLayout Spacing="5"
-                                               Padding="0,5">
+                        <Grid ColumnDefinitions="auto,auto,*"
+                              Margin="10,5"
+                              ColumnSpacing="5">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="View_Profile"/>
+                            </Grid.GestureRecognizers>
+                            
                             <Border StrokeShape="RoundRectangle 40"
                                     StrokeThickness="0">
-                                <Image Source="{Binding Image}"
+                                <Image Source="{Binding Image, Converter={StaticResource DefaultPic}}"
                                        HeightRequest="75"
                                        WidthRequest="75"
                                        Aspect="AspectFill"/>
                             </Border>
-                            <Grid ColumnDefinitions="auto"
-                                  RowDefinitions="*,*">
+                            
+                            <Grid RowDefinitions="*,*"
+                                  ColumnDefinitions="auto"
+                                  Grid.Column="1">
                                 <Label Text="{Binding Name}"
                                        VerticalOptions="End"
-                                       FontFamily="Garet"
-                                       Grid.ColumnSpan="2"/> 
-                                <Label Text="{Binding Followers}"
-                                       VerticalOptions="Start"
-                                       Grid.Row="1"
-                                       Grid.Column="1"/>
+                                       FontFamily="TT Fors"
+                                       FontSize="18"/>
+                                
+                                <Label Text="@username"
+                                       FontFamily="TT Fors"
+                                       Opacity="0.7"
+                                       Grid.Row="1"/>
                             </Grid>
-                        </HorizontalStackLayout>
+
+                            <Button Text="Invite"
+                                    TextColor="black"
+                                    FontFamily="Akira"
+                                    FontSize="15"
+                                    HorizontalOptions="End"
+                                    WidthRequest="100"
+                                    HeightRequest="40"
+                                    CornerRadius="15"
+                                    BackgroundColor="#3E8EED"
+                                    Grid.Column="2"/>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

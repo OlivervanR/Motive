@@ -18,22 +18,21 @@
         <StackLayout>
             <!-- YOUR MOTIVES | Layout #1 -->
             <CollectionView ItemsSource="{Binding DisplayedItems}">
-
                 <CollectionView.Header>
                     <Label Text="YOUR MOTIVES" 
-                    FontSize="35"    
-                    CharacterSpacing="4"    
-                    VerticalOptions="Center"
-                    FontFamily="Aventi"
-                    Padding="0,8,0,4"/>
+                        FontSize="35"    
+                        CharacterSpacing="4"    
+                        VerticalOptions="Center"
+                        FontFamily="Aventi"
+                        Padding="0,10,0,0"/>
                 </CollectionView.Header>
-
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Event">
                         <Grid ColumnDefinitions="auto, 160, 20"
                             ColumnSpacing="6"
                             RowDefinitions="auto, auto, *"
-                            Padding="5,10,5,5">
+                            Padding="5,15">
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="View_Event"/>
