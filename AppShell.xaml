@@ -21,8 +21,12 @@
                       Route="Create" />
         
         <Tab Icon="friendship.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Friends}"
+            <ShellContent Title="Friends"
+                          ContentTemplate="{DataTemplate local:Friends}"
                           Route="Friends" />
+            <ShellContent Title="Groups"
+                          ContentTemplate="{DataTemplate local:Groups}"
+                          Route="Groups"/>
         </Tab>
         
         <ShellContent Icon="user_profile.png"

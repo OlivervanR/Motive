@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Test.Model;
 
@@ -8,6 +9,7 @@ namespace Test.Services
     {
         private ObservableCollection<Event> events;
         private ObservableCollection<Account> accounts;
+        private ObservableCollection<Group> groups;
         public ObservableCollection<Event> Events
         {
             get { return events; }
@@ -18,6 +20,12 @@ namespace Test.Services
         {
             get { return accounts; }
             set { accounts = value; }
+        }
+
+        public ObservableCollection<Group> Groups
+        {
+            get { return groups; }
+            set { groups = value; }
         }
 
         public DataService()
@@ -122,7 +130,8 @@ namespace Test.Services
                 {
                     Name="Lucas Worrell",
                     Planned="7",
-                    Followers="4,095"
+                    Followers="4,095",
+                    Gallery= new List<string> {"frog", "jay", "map", "pic2", "pic1" }
                 },
 
                 new Account
@@ -215,11 +224,47 @@ namespace Test.Services
                 }
 
             };
+            groups = new ObservableCollection<Group>()
+            {
+                new Group
+                {
+                    Name="Trappin Snow on Christmas",
+                    People= new List<Account> { accounts[0], accounts[1] },
+                    Image="trappin"
+                },
+
+                new Group
+                {
+                    Name="Power Rangers",
+                    People= new List<Account> { accounts[0], accounts[1], accounts[2], accounts[3],accounts[4], accounts[5]},
+                    Image="powerrangers"
+                },
+
+                new Group
+                {
+                    Name="Free Pac and Big From Cuba",
+                    People= new List<Account> { accounts[6], accounts[3], accounts[8], accounts[7]},
+                    Image="freepac"
+                },
+
+                new Group
+                {
+                    Name="Le babyyyy fan club",
+                    People= new List<Account> { accounts[2], accounts[5]},
+                    Image="lebaby"
+                }         
+                                 
+            };
         }
 
         public ObservableCollection<Event> GetDisplayedItems(int count)
         {
             return new ObservableCollection<Event>(events.Take(count));
         }
+
+        internal static IEnumerable GetSearchResults(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
-}
+} 
