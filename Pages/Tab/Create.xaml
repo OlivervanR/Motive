@@ -1,12 +1,180 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:format="clr-namespace:Test.Format"
              x:Class="Test.Create"
-             Title="Create">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="CREATE EVENT"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="WithText" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#B6933A"/>
+            </Style>
+            <Style x:Key="WithoutText" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#413E3E"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Grid ColumnDefinitions="auto, *"
+                  RowDefinitions="*,*"
+                  ColumnSpacing="20">
+                <Button ImageSource="images"
+                        HeightRequest="150"
+                        WidthRequest="150"
+                        Grid.RowSpan="2"
+                        Padding="40"
+                        CornerRadius="20"
+                        BackgroundColor="#B6933A"/>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="TITLE"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <Entry Placeholder="Enter Name"/>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1"
+                                     Grid.Row="1">
+                    <Label Text="LOCATION"
+                            FontFamily="Garet"
+                            FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <Entry Placeholder="Enter Location"/>
+                    </Frame>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Label Text="DESCRIPTION"
+                   FontFamily="Garet"
+                   FontSize="16"/>
+            <Frame BorderColor="#B6933A"
+                   BackgroundColor="Transparent"
+                   Padding="5,-5">
+                <Entry Placeholder="Description of the event..."/>
+            </Frame>
+
+            <Label Text="SPECIAL INSTRUCTIONS"
+                   FontFamily="Garet"
+                   FontSize="16"/>
+            <Frame BorderColor="#B6933A"
+                   BackgroundColor="Transparent"
+                   Padding="5,-5">
+                <Entry Placeholder="How can people enter..."/>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="*,*,*"
+                  ColumnSpacing="10"
+                  RowSpacing="10">
+                <VerticalStackLayout>
+                    <Label Text="DATE"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <HorizontalStackLayout>
+                            <Image Source="calendar"
+                                   HeightRequest="20"
+                                   WidthRequest="20"/>
+                            <DatePicker/>
+                        </HorizontalStackLayout>
+                        
+                    </Frame>
+                </VerticalStackLayout>
+                    
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="TIME"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <TimePicker/>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1">
+                    <Label Text="EVENT TYPE"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <Picker Title="Choose Type">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Bar</x:String>
+                                    <x:String>Club</x:String>
+                                    <x:String>Party</x:String>
+                                    <x:String>Music</x:String>
+                                    <x:String>Other</x:String>
+                                </x:Array>
+                                
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+                    <Label Text="CAPACITY"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <Entry Placeholder="People Limit"/>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2">
+                    <Label Text="INVITE ONLY"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Switch IsToggled="True"
+                            HorizontalOptions="Start"
+                            OnColor="#B6933A"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Grid.Row="2">
+                    <Label Text="ADD CO-HOSTS"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Button Text="+"
+                            FontSize="20"
+                            TextColor="White"
+                            BackgroundColor="#B6933A"
+                            HorizontalOptions="Start"
+                            HeightRequest="30"
+                            WidthRequest="50"
+                            Padding="0"/>                    
+                </VerticalStackLayout>
+            </Grid>
+
+            <Button Text="ADVANCED SETTINGS"
+                    Clicked="AS_Clicked"
+                    ImageSource="settings"
+                    TextColor="White"
+                    FontFamily="Akira"
+                    BackgroundColor="#413E3E"
+                    HeightRequest="50"/>
+
+            <Button Text="CUSTOMIZE EVENT PAGE"
+                    ImageSource="edit"
+                    TextColor="White"
+                    FontFamily="Akira"
+                    BackgroundColor="#413E3E"
+                    HeightRequest="50"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

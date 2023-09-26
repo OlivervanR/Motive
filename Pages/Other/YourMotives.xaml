@@ -115,7 +115,7 @@
                                     FontAttributes="Italic"
                                     FontSize="14"
                                     VerticalTextAlignment="End"
-                                    TextColor="#3E8EED"/>
+                                    TextColor="#B6933A"/>
                             </HorizontalStackLayout>
 
                             <!--People Going-->

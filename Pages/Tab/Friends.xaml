@@ -59,7 +59,7 @@
                                     WidthRequest="100"
                                     HeightRequest="40"
                                     CornerRadius="15"
-                                    BackgroundColor="#3E8EED"
+                                    BackgroundColor="#B6933A"
                                     Grid.Column="2"/>
                         </Grid>
                     </DataTemplate>

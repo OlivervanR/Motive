@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Test.Pages.Other.Advanced_Settings"
+             Title="Advanced_Settings"
+             BackgroundColor="#1E1E1E">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Grid RowDefinitions="*,*"
+                  ColumnDefinitions="*,*"
+                  ColumnSpacing="10"
+                  RowSpacing="10">
+                <VerticalStackLayout>
+                    <Label Text="BLOCK INVITES"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Switch IsToggled="False"
+                            HorizontalOptions="Start"
+                            OnColor="#B6933A"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="CAPACITY"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Frame BorderColor="#B6933A"
+                           BackgroundColor="Transparent"
+                           Padding="5,-5">
+                        <Entry/>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1">
+                    <Label Text="ALLOW REWINDS"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Switch IsToggled="False"
+                            HorizontalOptions="Start"
+                            OnColor="#B6933A"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="BLOCK INVITES"
+                           FontFamily="Garet"
+                           FontSize="16"/>
+                    <Switch IsToggled="False"
+                            HorizontalOptions="Start"
+                            OnColor="#B6933A"/>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

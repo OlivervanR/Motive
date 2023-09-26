@@ -8,38 +8,50 @@
 
     <ContentPage.Resources>
         <convert:DefaultPic x:Key="DefaultPic"/>
+        <convert:DefaultBackground x:Key="DefualtBackground"/>
     </ContentPage.Resources>
-    <Grid RowDefinitions="*, 50">
-        <ScrollView>
-            <VerticalStackLayout>
-                <Grid RowDefinitions="auto">
-                    <Image Source="profilebackgroundwhite"
-                           HeightRequest="175"
-                           Aspect="AspectFill"/>
+    <ScrollView>
+        <VerticalStackLayout>
+            <!--Profile Photos-->
+            <Grid RowDefinitions="auto">
+                <Image Source="{Binding BImage, Converter={StaticResource DefualtBackground}}"
+                        HeightRequest="175"
+                        Aspect="AspectFill"/>
 
-                    <Border StrokeShape="Ellipse"
-                            Margin="15,-50"
-                            WidthRequest="100"
-                            HeightRequest="100"
-                            VerticalOptions="End"
-                            HorizontalOptions="Center" >
-                        <Image Source="{Binding Image, Converter={StaticResource DefaultPic}}"
-                               Aspect="AspectFill"/>
-                    </Border>
-                </Grid>
+                <Border StrokeShape="Ellipse"
+                        StrokeThickness="7"
+                        Stroke="black"
+                        Margin="15,-50"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        VerticalOptions="End"
+                        HorizontalOptions="Center" >
+                    <Image Source="{Binding Image, Converter={StaticResource DefaultPic}}"
+                            Aspect="AspectFill"/>
+                </Border>
+            </Grid>
 
-                <VerticalStackLayout Spacing="15"
-                                     Padding="15,0">
-                    <Label Text="{Binding Name}"
-                           Padding="0,60,0,0"
-                           HorizontalOptions="Center" 
-                           FontFamily="Akira"
-                           FontSize="16"/>
+            <VerticalStackLayout Spacing="15"
+                                    Padding="15,0">
+                <!--Name-->
+                <Label Text="{Binding Name}"
+                        Padding="0,60,0,0"
+                        HorizontalOptions="Center" 
+                        FontFamily="Akira"
+                        FontSize="16"/>
+
+                <!--Stats-->
+                <Border StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
+                        BackgroundColor="#1E1E1E"
+                        Padding="10"
+                        HorizontalOptions="CenterAndExpand">
 
                     <Grid ColumnDefinitions="auto, auto"
-                          RowDefinitions="*,*"
-                          ColumnSpacing="10"
-                          HorizontalOptions="Center">
+                            RowDefinitions="*,*"
+                            ColumnSpacing="10"
+                            HorizontalOptions="Center"
+                            Padding="25,0">
                         <HorizontalStackLayout Spacing="10">
                             <Label Text="#"
                                    FontSize="16"
@@ -73,63 +85,167 @@
                         </HorizontalStackLayout>
 
                     </Grid>
+                </Border>
 
-                    <HorizontalStackLayout HorizontalOptions="Center">
-                        <Button Text="Invite"
-                                TextColor="Black"
-                                BackgroundColor="#3E8EED"
-                                FontSize="13"
-                                FontFamily="Akira"
-                                CornerRadius="0"
-                                HeightRequest="40"/>
+                <!--Friends with-->
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                           Spacing="5">
+                    <Label Text="Friends with"
+                            FontFamily="Garet"/>
+                    <Label Text="Barrett, Fidel Castro"
+                            FontAttributes="Bold"
+                            FontFamily="Garet"/>
+                </HorizontalStackLayout>
 
-                        <ImageButton Source="personadd" 
-                                     BackgroundColor="White"
-                                     HeightRequest="50"
-                                     Padding="5"/>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                           Spacing="30">
+                    <ImageButton Source="acceptemail"
+                                    BackgroundColor="#B6933A"
+                                    CornerRadius="15"
+                                    HeightRequest="50"
+                                    WidthRequest="80"
+                                    Padding="5"/>
 
-                        <ImageButton Source="messagecircle" 
-                                     BackgroundColor="White"
-                                     HeightRequest="50"
-                                     Padding="5"
-                                     Margin="-5"/>
+                    <ImageButton Source="personadd" 
+                                    BackgroundColor="#B6933A"
+                                    HeightRequest="50"
+                                    WidthRequest="80"
+                                    Padding="5"
+                                    CornerRadius="15"/>
 
-                    </HorizontalStackLayout>
-                    
-                    <Border StrokeShape="RoundRectangle 10"
-                            StrokeThickness="0"
-                            BackgroundColor="#1E1E1E"
-                            Padding="10">
-                        <Label Text="A bunch of text test aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
-                    </Border>
+                    <ImageButton Source="messagecircle" 
+                                    BackgroundColor="#B6933A"
+                                    HeightRequest="50"
+                                    WidthRequest="80"
+                                    Padding="5"
+                                    CornerRadius="15"/>
 
-                    <Line HeightRequest="1"
-                          BackgroundColor="White"
-                          Margin="-50,0"
-                          Opacity="0.5"/>
+                </HorizontalStackLayout>
 
-                    <Label Text="GALLERY"
-                           FontFamily="Akira"
-                           FontSize="15"/>
+                <Border StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
+                        BackgroundColor="#1E1E1E"
+                        Padding="10">
+                    <Label Text="A bunch of text test aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+                </Border>
 
-                    <CollectionView ItemsSource="{Binding Gallery}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
-                        </CollectionView.ItemsLayout>
+                <Line HeightRequest="0.7"
+                        BackgroundColor="White"
+                        Margin="-50,0"
+                        Opacity="0.5"/>
 
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:Account">
+                <Label Text="GALLERY"
+                        FontFamily="Akira"
+                        FontSize="15"/>
+
+                <CollectionView ItemsSource="{Binding Gallery}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Account">
+                            <Border StrokeShape="RoundRectangle 10"
+                                    StrokeThickness="0">
                                 <Image Source="{Binding}" 
                                        HeightRequest="200"
                                        WidthRequest="100"
                                        Aspect="AspectFill"/>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
-                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
+                <Line HeightRequest="0.7"
+                        BackgroundColor="White"
+                        Margin="-50,0"
+                        Opacity="0.5"/>
+
+                <Label Text="INTERESTS"
+                        FontFamily="Akira"
+                        FontSize="15"/>
+
+                <CollectionView ItemsSource="{Binding Interests}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="4" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Account">
+                            <Frame BackgroundColor="#1E1E1E"
+                                    CornerRadius="20"
+                                    Padding="10">
+                                <Grid HorizontalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding}"
+                                            FontFamily="Garet"
+                                            Grid.Column="0"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Line HeightRequest="0.7"
+                        BackgroundColor="White"
+                        Margin="-50,0"
+                        Opacity="0.5"/>
+
+                <Label Text="FAVORITES"
+                        FontFamily="Akira"
+                        FontSize="15"/>
+
+                <Button x:Name="Favorites"
+                        Text="Prefered Venue"
+                        ImageSource="pizza"
+                        TextColor="White"
+                        BackgroundColor="#032752"
+                        Clicked="Button_Clicked" />
+
+                <Line HeightRequest="0.7"
+                        BackgroundColor="White"
+                        Margin="-50,0"
+                        Opacity="0.5"/>
+
+                <Label Text="TOP TRACK"
+                        FontFamily="Akira"
+                        FontSize="15"/>
+
+                <Border StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
+                        BackgroundColor="#1E1E1E"
+                        Padding="20">
+                    <Grid ColumnDefinitions="auto, *"
+                            RowDefinitions="*,*"
+                            ColumnSpacing="20" >
+                        <Image Source="outlandishfashion.png"
+                                Grid.RowSpan="2"
+                                Aspect="AspectFit"
+                                WidthRequest="80"/>
+
+                        <Label Text="Tonight"
+                                FontSize="18"
+                                Grid.Column="1"
+                                VerticalOptions="End"/>
+
+                        <Label Text="The Outdoorsmen"
+                                Grid.Column="1"
+                                Grid.Row="1"/>
+
+                        <Image Source="spotify"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                WidthRequest="20"
+                                VerticalOptions="End"
+                                HorizontalOptions="End"/>
+
+                    </Grid>
+                </Border>
             </VerticalStackLayout>
-        </ScrollView>
-    </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

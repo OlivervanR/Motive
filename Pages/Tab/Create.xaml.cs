@@ -1,4 +1,5 @@
 namespace Test;
+using Test.Pages.Other;
 
 public partial class Create : ContentPage
 {
@@ -6,4 +7,9 @@ public partial class Create : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void AS_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushAsync(new Advanced_Settings());
+    }
 }
