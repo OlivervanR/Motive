@@ -129,57 +129,53 @@ namespace Test.Services
                 new Account
                 {
                     Name="Lucas Worrell",
-                    Planned="7",
-                    Followers="4,095",
-                    Gallery= new List<string> {"frog", "jay", "map", "pic2", "pic1" }
+                    BImage="lucasworrell",
+                    Friends="4,095",
+                    Gallery= new List<string> {"frog", "jay", "map", "pic2", "pic1" },
+                    Interests= new List<string> {"Club", "Gaming", "Security", "Workout", "Drugs"}
                 },
 
                 new Account
                 {
                     Name="Barrett MacFarlane",
                     Image="barrett.png",
-                    Planned="1",
-                    Followers="1"
+                    BImage="barrettbackground",
+                    Friends="1"
                 },
 
                 new Account
                 {
                     Name="Angel",
                     Image = "angel.png",
-                    Planned="2",
-                    Followers="587"
+                    Friends="587"
                 },
 
                 new Account
                 {
                     Name="Caleb Lenkorn",
                     Image = "caleb.png",
-                    Planned="6",
-                    Followers="2,524"
+                    Friends="2,524"
                 }, 
 
                 new Account
                 {
                     Name="Xaver Kwol",
                     Image = "xaver.png",
-                    Planned="69",
-                    Followers="420"
+                    Friends="420"
                 },
 
                 new Account
                 {
                     Name="Oliver van Rossem",
                     Image = "oliver.png",
-                    Planned="9",
-                    Followers="234,954"
+                    Friends="234,954"
                 }, 
 
                 new Account
                 {
                     Name="Frog the Dog",
                     Image = "frog.png",
-                    Planned="10",
-                    Followers="5,023,489"
+                    Friends="5,023,489"
                 }, 
 
                 new Account

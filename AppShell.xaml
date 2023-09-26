@@ -23,7 +23,7 @@
         <Tab Icon="friendship.png">
             <ShellContent Title="Friends"
                           ContentTemplate="{DataTemplate local:Friends}"
-                          Route="Friends" />
+                          Route="Friends"/>
             <ShellContent Title="Groups"
                           ContentTemplate="{DataTemplate local:Groups}"
                           Route="Groups"/>
